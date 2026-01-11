@@ -1,0 +1,336 @@
+/* Detection Results Styles */
+
+.detection-results-container {
+  width: 100%;
+}
+
+.detection-results-container h2 {
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+/* Images Results List */
+.images-results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.image-result-section {
+  background: #ffffff;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.image-result-section:hover {
+  border-color: var(--secondary-color);
+  box-shadow: 0 6px 25px rgba(52, 152, 219, 0.15);
+}
+
+.image-result-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #f0f0f0;
+}
+
+.image-info h3 {
+  color: var(--primary-color);
+  margin: 0 0 1rem 0;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.image-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.8rem;
+}
+
+.meta-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.8rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: #555;
+  gap: 0.3rem;
+}
+
+.detection-count-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 1rem;
+  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+  color: white;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.no-detections-message {
+  text-align: center;
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  color: #999;
+  font-style: italic;
+}
+
+/* Alerts Section */
+.alerts-section {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid #f0f0f0;
+}
+
+.alerts-section h4 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.alerts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.alert-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  border-left: 4px solid;
+}
+
+.alert-badge.alert-high {
+  background: #ffebee;
+  border-left-color: #d32f2f;
+  color: #b71c1c;
+}
+
+.alert-badge.alert-medium {
+  background: #fff8e1;
+  border-left-color: #f57c00;
+  color: #e65100;
+}
+
+.alert-badge.alert-low {
+  background: #e8f5e9;
+  border-left-color: #388e3c;
+  color: #1b5e20;
+}
+
+.alert-icon {
+  font-size: 1.2rem;
+}
+
+.alert-message {
+  flex: 1;
+}
+
+.filter-section {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.filter-section label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.filter-section select {
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--secondary-color);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: white;
+  color: var(--dark-text);
+  transition: var(--transition);
+}
+
+.filter-section select:hover,
+.filter-section select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+.detections-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+.detection-card {
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: var(--border-radius);
+  padding: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: var(--transition);
+}
+
+.detection-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+  border-color: var(--secondary-color);
+  background: white;
+}
+
+.detection-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.detection-header h4 {
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  text-transform: capitalize;
+  margin: 0;
+}
+
+.confidence-badge {
+  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 15px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.detection-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.detection-details p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.detection-details strong {
+  color: var(--primary-color);
+}
+
+.bbox-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bbox-list li {
+  padding: 0.3rem 0;
+  font-size: 0.85rem;
+  color: #666;
+  margin-left: 1rem;
+}
+
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: 1rem;
+}
+
+.spinner {
+  border: 4px solid #f0f0f0;
+  border-top: 4px solid var(--secondary-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: #999;
+  font-size: 1.1rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.pagination button {
+  padding: 0.7rem 1.5rem;
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.page-info {
+  font-weight: 600;
+  color: var(--primary-color);
+  min-width: 120px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .detections-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-section {
+    flex-direction: column;
+  }
+
+  .filter-section label {
+    width: 100%;
+  }
+
+  .filter-section select {
+    width: 100%;
+  }
+}

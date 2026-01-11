@@ -1,0 +1,6 @@
+path: C:/satellite-ai-project/satellite_dataset
+train: images/train
+val: images/train  # for now, use same images for validation
+
+nc: 2
+names: ['truck', 'warehouse']

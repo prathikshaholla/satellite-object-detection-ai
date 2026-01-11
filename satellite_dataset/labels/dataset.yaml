@@ -1,0 +1,6 @@
+path: ./satellite_dataset
+train: images/train
+val: images/val
+
+nc: 2
+names: ['truck', 'warehouse']
