@@ -10,7 +10,7 @@ from pathlib import Path
 import logging
 from functools import wraps
 
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_file, send_from_directory
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
@@ -28,8 +28,10 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Initialize Flask app
-app = Flask(__name__)
+# Initialize Flask app with static files from React build
+app = Flask(__name__, 
+    static_folder='../frontend/build',
+    static_url_path='/')
 CORS(app)
 
 # Configuration
@@ -576,6 +578,28 @@ def internal_error(error):
     return jsonify({'error': 'Internal server error'}), 500
 
 
+# ==================== STATIC FILE SERVING ====================
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve_react(path):
+    """Serve React app for all non-API routes"""
+    # If it's an API call, let it through
+    if path.startswith('api/'):
+        return {'error': 'Not found'}, 404
+    
+    # Try to serve static file
+    if path and os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
+    
+    # Serve index.html for client-side routing
+    index_path = os.path.join(app.static_folder, 'index.html')
+    if os.path.exists(index_path):
+        return send_from_directory(app.static_folder, 'index.html')
+    
+    return {'error': 'Frontend build not found. Run: npm run build'}, 404
+
+
 # ==================== DATABASE INITIALIZATION ====================
 
 def init_db():
@@ -586,5 +610,9 @@ def init_db():
 
 
 if __name__ == '__main__':
+    import os
+    debug = os.getenv('FLASK_ENV') != 'production'
+    port = int(os.getenv('PORT', 5000))
+    
     init_db()
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=debug, host='0.0.0.0', port=port)

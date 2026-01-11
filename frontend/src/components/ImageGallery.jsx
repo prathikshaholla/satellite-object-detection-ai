@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/ImageGallery.css';
 
+const API_URL = process.env.REACT_APP_API_URL || '/api';
+
 const ImageGallery = ({ refreshTrigger }) => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,7 +19,7 @@ const ImageGallery = ({ refreshTrigger }) => {
     try {
       setLoading(true);
       const response = await fetch(
-        `http://localhost:5000/api/images?page=${currentPage}&per_page=12`
+        `${API_URL}/images?page=${currentPage}&per_page=12`
       );
       if (!response.ok) throw new Error('Failed to fetch images');
 
@@ -34,7 +36,7 @@ const ImageGallery = ({ refreshTrigger }) => {
 
   const handleImageClick = async (image) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/images/${image.id}`);
+      const response = await fetch(`${API_URL}/images/${image.id}`);
       if (!response.ok) throw new Error('Failed to fetch image details');
 
       const data = await response.json();

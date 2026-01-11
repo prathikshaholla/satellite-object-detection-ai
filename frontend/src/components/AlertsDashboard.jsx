@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/AlertsDashboard.css';
 
+const API_URL = process.env.REACT_APP_API_URL || '/api';
+
 const AlertsDashboard = ({ refreshTrigger }) => {
   const [alerts, setAlerts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,7 +19,7 @@ const AlertsDashboard = ({ refreshTrigger }) => {
   const fetchAlerts = async () => {
     try {
       setLoading(true);
-      let url = `http://localhost:5000/api/alerts?page=${currentPage}&per_page=15`;
+      let url = `${API_URL}/alerts?page=${currentPage}&per_page=15`;
       if (severityFilter) {
         url += `&severity=${severityFilter}`;
       }
@@ -41,7 +43,7 @@ const AlertsDashboard = ({ refreshTrigger }) => {
 
   const handleAcknowledge = async (alertId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/alerts/${alertId}/acknowledge`, {
+      const response = await fetch(`${API_URL}/alerts/${alertId}/acknowledge`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

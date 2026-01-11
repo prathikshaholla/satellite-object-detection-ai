@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import '../styles/UploadForm.css';
 
+const API_URL = process.env.REACT_APP_API_URL || '/api';
+
 const UploadForm = ({ onUploadSuccess }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
@@ -75,7 +77,7 @@ const UploadForm = ({ onUploadSuccess }) => {
       const formData = new FormData();
       formData.append('image', selectedFile);
 
-      const response = await fetch('http://localhost:5000/api/upload', {
+      const response = await fetch(`${API_URL}/upload`, {
         method: 'POST',
         body: formData,
       });

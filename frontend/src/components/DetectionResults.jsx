@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/DetectionResults.css';
 
+const API_URL = process.env.REACT_APP_API_URL || '/api';
+
 const DetectionResults = ({ refreshTrigger }) => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,7 +17,7 @@ const DetectionResults = ({ refreshTrigger }) => {
   const fetchImagesWithDetections = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`http://localhost:5000/api/images?page=${currentPage}&per_page=10`);
+      const response = await fetch(`${API_URL}/images?page=${currentPage}&per_page=10`);
       if (!response.ok) throw new Error('Failed to fetch images');
 
       const data = await response.json();
@@ -24,7 +26,7 @@ const DetectionResults = ({ refreshTrigger }) => {
       const imagesWithDetails = await Promise.all(
         data.images.map(async (img) => {
           if (img.detection_count > 0) {
-            const detailResponse = await fetch(`http://localhost:5000/api/images/${img.id}`);
+            const detailResponse = await fetch(`${API_URL}/images/${img.id}`);
             if (detailResponse.ok) {
               const details = await detailResponse.json();
               return details;

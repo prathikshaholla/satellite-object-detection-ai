@@ -49,5 +49,18 @@ curl -Method POST -Uri http://localhost:5000/api/upload -Form @{'image'='path\\t
 - Model load warning: if best.pt missing, yolov8n.pt is used automatically.
 - Line-ending warnings on git add are safe; they reflect Windows CRLF.
 
+## Production Deployment
+
+The app is ready to deploy on **Railway** or **Heroku**:
+
+1. Push to GitHub (already done ✓)
+2. Go to https://railway.app
+3. Create new project → Deploy from GitHub
+4. Select your repository
+5. Railway auto-detects and deploys everything
+6. Your live URL appears on the dashboard
+
+**See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.**
+
 ## Repository
 Pushed to: https://github.com/prathikshaholla/satellite-object-detection-ai.git
