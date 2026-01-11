@@ -8,3 +8,5 @@ numpy==1.26.4
 PyYAML==6.0.2
 Pillow==10.3.0
 setuptools>=75.0.0
+gunicorn==21.2.0
+torch==2.2.0

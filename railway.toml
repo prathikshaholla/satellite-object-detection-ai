@@ -1,0 +1,10 @@
+[build]
+builder = "nixpacks"
+buildCommand = "npm install --prefix frontend && npm run build --prefix frontend && pip install -r backend/requirements.txt"
+
+[start]
+cmd = "cd backend && python app.py"
+restartPolicyType = "always"
+
+[deploy]
+startCommand = "cd backend && python app.py"

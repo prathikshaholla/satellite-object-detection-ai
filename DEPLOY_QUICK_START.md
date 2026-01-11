@@ -19,6 +19,39 @@ Go to https://railway.app and sign up with GitHub
 
 ---
 
+## If Build Fails on Railway
+
+Railway uses `railway.toml` to build your project:
+
+1. **Install build dependencies:**
+   - Node.js (for React build)
+   - Python 3.12 (for backend)
+
+2. **Build process:**
+   - Installs frontend dependencies: `npm install --prefix frontend`
+   - Builds React: `npm run build --prefix frontend`
+   - Installs backend dependencies: `pip install -r backend/requirements.txt`
+
+3. **Start command:**
+   - Runs: `cd backend && gunicorn app:app`
+
+**If it still fails:**
+- Check Railway logs: Click project → View logs
+- Common issues:
+  - Missing `frontend/build` → Run `npm run build` locally first
+  - Memory issue → Railway may need more resources
+  - Port binding → Railway sets `PORT` env var automatically
+
+### Temporary Fix:
+If Railway build keeps failing, use **Render** instead:
+- Go to https://render.com
+- Create Web Service
+- Connect GitHub repo
+- Build command: `cd frontend && npm install && npm run build && cd ../backend && pip install -r requirements.txt`
+- Start command: `cd backend && python app.py`
+
+---
+
 ## Option 2: Heroku (Free Tier Ended, but still works)
 
 1. `heroku login`
@@ -60,15 +93,18 @@ All data stored in database on Railway.
 
 ---
 
-## Troubleshooting
+## Troubleshooting Railway Errors
 
-| Issue | Solution |
+| Error | Solution |
 |-------|----------|
-| Build fails | Check Railway logs: `railway logs` |
-| API not responding | Verify backend health at `/api/health` |
-| Frontend blank | Ensure React build exists (`npm run build`) |
-| Port issue | Railway auto-assigns PORT env variable |
+| "Error creating build plan with Railpack" | Railway detected mixed Node/Python project. Configuration files (railway.toml, Procfile) are provided. Wait 1-2 min and redeploy. |
+| Build takes 5+ minutes | First build is slower. Check logs for stuck dependencies. |
+| 502 Bad Gateway after deploy | Backend didn't start. Check logs, ensure `gunicorn` is in requirements.txt. |
+| Frontend showing blank | React build didn't complete. Verify `frontend/build` exists locally, rebuild if needed. |
+| Port binding error | Railway auto-assigns PORT env var. Our code handles it automatically. |
+| API calls failing from frontend | Ensure frontend is using `/api` path (production) or `REACT_APP_API_URL` env var. |
 
 ---
 
 For more details, see [DEPLOYMENT.md](DEPLOYMENT.md)
+
