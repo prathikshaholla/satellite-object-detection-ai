@@ -1,10 +1,5 @@
 [build]
-builder = "nixpacks"
-buildCommand = "npm install --prefix frontend && npm run build --prefix frontend && pip install -r backend/requirements.txt"
+dockerfile = "Dockerfile"
 
 [start]
-cmd = "cd backend && python app.py"
-restartPolicyType = "always"
-
-[deploy]
-startCommand = "cd backend && python app.py"
+cmd = "cd backend && gunicorn --bind 0.0.0.0:$PORT --timeout 120 --workers 2 app:app"
